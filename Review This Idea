@@ -1,0 +1,78 @@
+Force Alignment 
+  Following document are my own thoughts from what I learned.
+  If you find any mistake please feel free to point it out.
+  Without taking much of your time I would like to start.
+
+#Speech parameterisation
+
+     The goal of speech parameterization is to reduce the negative environmental
+     influences on speech recognition. The speech varies in a number of aspects
+
+     Mainly due to differences among speakers pronunciation depends on gender, dialect,
+     voice, environmental noises etc.
+ 
+     Tools which can be used for speech parameterisation
+         
+          1) Mel Frequency Cepstral Coefficients (MFCC)
+          2) Perceptual Linear Prediction (PLP)
+       
+                                                              
+         Mel Frequency Cepstral Coefficients (MFCC)  is extraxted by The audio samples are transformed into frequency domain by Discrete Fourier
+         Transformation (DFT) in the window 
+         The frequency spectrum from the previous step is transformed onto the mel
+         scale, a perceptual scale of frequencies, using triangular overlapping filters.
+         From the mel frequencies the logs of the powers are taken from each of the mel
+          frequencies.
+         At the end the discrete cosine transform is applied on the list of mel log powers 
+         The MFCC coefficients are the amplitudes of the resulting spectrum
+
+# Acoustic Modelling (AM)
+     
+      It uses Bayes theorem(conditional probability for each set of possible case) to carry out word determination.
+      Modern speech recognition toolkits use Hidden Markov Model for modelling uncertainty between acoustic features and the corresponding
+      transcription.
+     
+
+      we can download phonetics dictionary from CMU.
+      
+      
+#Language Modelling (LM)
+   
+     Language Model prioritise AM hypothesis.It works with posterior probability of transcription.
+     For Language modelling we can use CMUSLM toolkit or SRILM toolkit.
+
+#Speech Decoding
+  
+      HMM decoders find the most probable word sequences by searching phone sequences which corresponds to the words.
+      Language Model Weight is used to improve speech recognition accuracy.  
+
+# Estimating Speech Recognition Quality
+
+     Two methods are used to do these;
+
+        1)Word Error Rate
+             It uses edit operations for substitution, deletion, insertion to compute the minimum edit distance.
+        2)Sentence Error Rate
+
+#Kaldi Toolkit
+
+    I would like to use Kaldi Toolkit.(Feel free to give any other suggestions)
+    Kaldi uses viterbi criterion for assigning acoustic behaviour to HMM states.
+    Viterbi training is just as effective for continuous speech recognition as Baum-Welch algorithm  
+    Viterbi requires less computational resource.
+    The Kaldi toolkit could be separated to Kaldi library and training scripts.
+    Kaldi provides very useful standardized scripts which wrap Kaldi executables or add new functionality.
+
+#Preparing dictionary 
+  
+   We can prepare dictionary of new words found in training set and create list of words which are not in cmu dictionary which we downloaded
+   earlier.Pronunciation are automatically generated using Sequitur G2P.
+ 
+#To create Model for British Version.
+   
+   
+  Acoustic Model for this new language is to be made.
+  For that we need data several hours of audio.
+  Then we can extend it for any other new language.
+
+     
